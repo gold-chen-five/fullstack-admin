@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useRef} from 'react'
 import FlexBetween from 'components/FlexBetween'
 import Header from 'components/Header'
 import { DownloadOutlined, Email, PointOfSale, PersonAdd, Traffic } from '@mui/icons-material'
@@ -8,12 +8,17 @@ import BreakdownChart from 'components/BreakdownChart'
 import OverviewChart from 'components/OverviewChart'
 import { useGetDashboardQuery } from 'state/api'
 import StatBox from "components/StatBox"
+import { useReactToPrint } from 'react-to-print'
 
 function Dashboard() {
   const theme = useTheme()
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)")
   const {data,isLoading} = useGetDashboardQuery()
-  console.log(data)
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   const columns = [
     {
         field: "_id",
@@ -47,7 +52,7 @@ function Dashboard() {
   ]
 
   return (
-    <Box m="1.5rem 2.5rem" pb="1.5rem">
+    <Box p="1.5rem 2.5rem"  ref={componentRef} backgroundColor={theme.palette.background.default}>
       <FlexBetween>
         <Header title="DASHBOARD" subTitle="welcome to dashboard"/>
 
@@ -60,6 +65,7 @@ function Dashboard() {
               fontWeight: "bold",
               padding: "10px 20px"
             }}
+            onClick={handlePrint}
           >
             <DownloadOutlined sx={{mr: "10px"}}/>
             Download reports
