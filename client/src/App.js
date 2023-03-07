@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "theme";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
-import { BrowserRouter,Route,Routes,Navigate } from "react-router-dom";
+import { BrowserRouter,Route,Routes,Navigate, HashRouter } from "react-router-dom";
 import Layout from './scenes/layout'
 import Dashboard from "./scenes/dashboard"
 import Products from "./scenes/products"
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="app">
-      <BrowserRouter>
+      <HashRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
@@ -43,7 +43,7 @@ function App() {
             </Route>
           </Routes>
         </ThemeProvider>
-      </BrowserRouter> 
+      </HashRouter> 
     </div>
   );
 }
