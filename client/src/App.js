@@ -23,12 +23,12 @@ function App() {
 
   return (
     <div className="app">
-      {/* <BrowserRouter> */}
+      <BrowserRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={ <Navigate to="/dashboard" replace/>}/>
+              <Route path="/" element={ <Navigate to="/dashboard" replace/>} exact/>
               <Route path="/dashboard" element={<Dashboard/>}/>
               <Route path="/products" element={<Products/>}/>
               <Route path="/customers" element={<Customers/>}/>
@@ -43,7 +43,7 @@ function App() {
             </Route>
           </Routes>
         </ThemeProvider>
-      {/* </BrowserRouter>  */}
+      </BrowserRouter> 
     </div>
   );
 }
