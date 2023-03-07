@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="app">
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
@@ -43,7 +43,7 @@ function App() {
             </Route>
           </Routes>
         </ThemeProvider>
-      </BrowserRouter> 
+      {/* </BrowserRouter>  */}
     </div>
   );
 }
