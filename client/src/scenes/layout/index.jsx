@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { Box, useMediaQuery} from "@mui/material"
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Navbar from "components/Navbar"
 import Sidebar from "components/Sidebar"
@@ -8,7 +8,7 @@ import { useGetUserQuery } from 'state/api'
 
 function Layout() {
   const isNonMobile = useMediaQuery("(min-width: 600px)")
-  const [isSidebarOpen,setIsSidebarOpen] = useState(true)
+  const [isSidebarOpen,setIsSidebarOpen] = useState(isNonMobile ? true : false)
   const userId = useSelector((state) => state.global.userId)
   const { data } = useGetUserQuery(userId)
 

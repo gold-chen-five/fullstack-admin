@@ -49,7 +49,7 @@ export const getTransactions = async (req,res) => {
             return sortFormatted
         }
         const sortFormatted = Boolean(sort) ? generateSort() : {}
-        console.log(new RegExp(search, "i"))
+        
         const transactions = await Transaction.find({
             $or: [
                 {cost: { $regex: new RegExp(search, "i")}},
@@ -60,10 +60,11 @@ export const getTransactions = async (req,res) => {
             .skip(page * pageSize)
             .limit(pageSize)
 
+            console.log(search)
         const total = await Transaction.countDocuments({
-            name: {$regex : search, $options: "i"}
-        })
-
+            name: { $regex: search, $options: "i" },
+        });
+        
         res.status(200).json({
             transactions,
             total
